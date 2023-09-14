@@ -174,6 +174,42 @@
   margin-top: 20px;
   display:none;
 }
+.qa{
+  position: relative;
+  width: 50%;
+}
+.int{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.overlay{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #edc4b3;
+  border-radius:20px;
+}
+.qa:hover .overlay{
+  opacity: 1;
+}
+.rs{
+  color: white;
+  font-size: 20px;
+  position:relative;
+  top: 30%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  
+}
 
   </style>
     <title>Rika Esthetic</title>
@@ -216,9 +252,32 @@ Cel mai performant laser la ora actuala la nivel internațional cit și in Moldo
     <div>
     <div class="i-fr"><h1>Întrebări frecvente</h1></div>
     <div class="intr">
-      <p><img src="./img/i1.jpg" alt="">Cum sa alegi cel mai bun tratament anicelulitic?</p>
-      <p><img src="./img/i2.jpg" alt="">Se poate face epilare definitiva in perioada verii?</p>
-      <p><img src="./img/i3.jpg" alt="">Cate sedinte de tratament sunt necesate?</p>
+<div class="qa">
+<p><img class="int" src="./img/i1.jpg" alt="">Cum sa alegi cel mai bun tratament anicelulitic?</p>
+  <div class="overlay">
+    <div class="rs"><p>Cel mai indicat este sa mergi la o evaluare corporala pentru a vedea de ce anume ai nevoie si de a primi un plan de tratament personalizat.In clinica Rika Esthetic consuntatiile sunt gratuite si complet neangajante.</p></div></div>    
+</div>
+<div class="qa">
+<p><img class="int" src="./img/i2.jpg" alt="">Se poate face epilare definitiva in perioada verii?</p>
+<div class="overlay">
+  <div class="rs">
+    <p>Da,se poate,atata timp cat se respecta recomandarile primite de la specialistii nostri.Aceasta vizeaza perioada de dinaintea terapiei precum si recomandari care trebuie respectate dupa efectuarea terapiei.</p>
+
+  </div>
+
+</div>
+
+</div>
+      <div class="qa">
+      <p><img class="int3" src="./img/i3.jpg" alt="">Cate sedinte de tratament sunt necesare?</p>
+      <div class="overlay">
+        <div class="rs">
+          <p>Varianta scurta de raspuns:6-12 sesiuni in functie de zona.Numarul de sedinte se stabileste pentru fiecare persoana in parte,de catre specialistul terapeut,care face o consultatie atenta asupra pielii. </p>
+        </div>
+
+      </div>
+
+      </div>
     </div>
     </div>
     <div>
