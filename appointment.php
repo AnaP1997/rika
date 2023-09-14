@@ -25,8 +25,7 @@ if ($result->num_rows > 0) {
         $telefon = FILTER_INPUT(INPUT_POST, 'phone', FILTER_SANITIZE_NUMBER_INT);
         $procedura = FILTER_INPUT(INPUT_POST, 'serviciu', FILTER_SANITIZE_SPECIAL_CHARS);
         $data = FILTER_INPUT(INPUT_POST, 'data', FILTER_SANITIZE_SPECIAL_CHARS);
-        $ora = FILTER_INPUT(INPUT_POST, 'data', FILTER_SANITIZE_SPECIAL_CHARS);
-
+        
         if (strlen($nume) < 2) {
             $nameError = "Nume prea scurt";
         }
@@ -40,21 +39,30 @@ if ($result->num_rows > 0) {
 
 
         if (!isset($nameError) && !isset($surnameError) && !isset($phoneError)) {
-            $id = bin2hex(random_bytes(16));
-        
-            $sql = "INSERT INTO programari(id_prog,nume,prenume,telefon,serviciu,data,ora)
-                    VALUES('$id', '$nume','$prenume', '$telefon','$procedura','$data','$ora')";
+          $id=crc32(uniqid());  
+          $data_si_ora_array = explode(" ", $data);
+          $d= $data_si_ora_array[0];
+          $ora=$data_si_ora_array[1];
+            $sql = "INSERT INTO programari(id_prog,nume,prenume,telefon,serviciu,data)
+                    VALUES('$id','$nume','$prenume', '$telefon','$procedura','$data')";
 
                    
 
             if (mysqli_query($c,$sql)) {
-                $successMessage = "Programare Reusita ";
-            } else {
-                $errorMessage = "Ceva nu a mers,incercati din nou";
-                echo mysqli_error($c);
-            }
+                
+                // Acum, șterge data aleasă din tabelul "programari_active"
+        $sqlDelete = "DELETE FROM programari_active WHERE data='$d' AND ora='$ora'";
+        if (mysqli_query($c, $sqlDelete)) {
+            // Data a fost ștearsă cu succes din tabelul "programari_active"
+            $successMessage = "Programare Reusita";
+        } else {
+            $errorMessage = "Eroare la ștergerea datei din programari_active: " . mysqli_error($c);
         }
+    } else {
+        $errorMessage = "Ceva nu a mers, încercați din nou";
+        echo mysqli_error($c);
     }
+}}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,7 +96,7 @@ if ($result->num_rows > 0) {
             display: block;
             margin-bottom: 10px;
         }
-        select, input[type="text"], input[type="date"], input[type="time"] {
+        select, input[type="text"], input[type="datetime"] {
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
@@ -96,7 +104,7 @@ if ($result->num_rows > 0) {
             border-radius: 3px;
         }
         button {
-            background-color: #007bff;
+            background-color: #E7D8C9;
             color: #fff;
             padding: 10px 20px;
             border: none;
@@ -104,7 +112,7 @@ if ($result->num_rows > 0) {
             cursor: pointer;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #9c6644;
         }
     </style>
 </head>
@@ -119,7 +127,7 @@ if ($result->num_rows > 0) {
     <div class="container">
         <h1>Rika Esthetic</h1>
 
-        <form action="./thank.php" method="post" style="padding:30px;margin:0 0 20px 0;">
+        <form action="./appointment.php" method="post" style="padding:30px;margin:0 0 20px 0;">
 
         <label for="name">Numele Dumneavoastră:</label>
         <input id="name" name="name" type="text">
@@ -144,10 +152,8 @@ if ($result->num_rows > 0) {
         foreach ($date_disponibile as $data) {
             echo "<option value='" . $data . "'>" . $data . "</option>";
         }
-        $data_ora_arr=explode(" ", $data);
-        $ora=$data_ora_arr[1];
         
-        ?><input type='hidden' name='ora' value='" . $ora . "'>
+        ?>
             </select>
 
             <button type="submit" name="program" value="program">Programati</button>
@@ -157,6 +163,7 @@ if ($result->num_rows > 0) {
         </form>
     </div>
     </main>
+    
     <?php
   include './components/footer.php"';
   ?>

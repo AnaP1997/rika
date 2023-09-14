@@ -194,13 +194,13 @@ img {vertical-align: middle;}
 <div style="margin:5px 200px 5px 200px">
 <p>Ne angajăm să vă ajutăm să vă descoperiți cea mai încredere versiune a dumneavoastră prin intermediul unei game variate de servicii premium. Echipa noastră dedicată de specialiști în frumusețe vă oferă o experiență personalizată și rezultate excepționale, folosind cele mai avansate tehnologii și produse de înaltă calitate. 
 
-</p><p>1. **Epilare Definitivă cu Laser:** Experimentați o piele netedă și fără fire de păr nedorite cu ajutorul tehnologiei avansate a epilării definitive cu laser. Efectuăm proceduri personalizate, adaptate nevoilor dumneavoastră specifice, pentru a vă asigura confortul și rezultatele de durată.
+</p><p><p style="font-weight: bold;">1.Epilare Definitivă cu Laser:</p>Experimentați o piele netedă și fără fire de păr nedorite cu ajutorul tehnologiei avansate a epilării definitive cu laser. Efectuăm proceduri personalizate, adaptate nevoilor dumneavoastră specifice, pentru a vă asigura confortul și rezultatele de durată.
 
-</p><p>2. **Remodelare Corporală:** Transformați-vă silueta și obțineți contururi definiate cu serviciile noastre de remodelare corporală. Folosim tehnici inovatoare, cum ar fi masaj cu vacuum și electrostimulare, pentru a vă ajuta să eliminați celulita, să tonifiați pielea și să sculptați corpul în mod natural.
+</p><p><p style="font-weight: bold;">2.Remodelare Corporală:</p>Transformați-vă silueta și obțineți contururi definiate cu serviciile noastre de remodelare corporală. Folosim tehnici inovatoare, cum ar fi masaj cu vacuum și electrostimulare, pentru a vă ajuta să eliminați celulita, să tonifiați pielea și să sculptați corpul în mod natural.
 
-</p><p>3. **Laminare Gene/Sprâncene:** Accentuați frumusețea ochilor dumneavoastră cu ajutorul serviciilor noastre de laminare a genelor și sprâncenelor. Cu produse de cea mai bună calitate, vă putem oferi gene și sprâncene definite, bogate și bine definite, pentru o privire fermecătoare și expresivă.
+</p><p><p style="font-weight: bold;">3.Laminare Gene/Sprâncene:</p> Accentuați frumusețea ochilor dumneavoastră cu ajutorul serviciilor noastre de laminare a genelor și sprâncenelor. Cu produse de cea mai bună calitate, vă putem oferi gene și sprâncene definite, bogate și bine definite, pentru o privire fermecătoare și expresivă.
 
-</p><p>4. **Depilare cu Ceară:** Beneficiați de o experiență de depilare netedă și eficientă cu serviciile noastre de depilare cu ceară. Echipa noastră de terapeuți vă va ajuta să vă simțiți confortabil în timpul procedurii, oferindu-vă o piele perfectă pentru mai mult timp.
+</p><p><p style="font-weight: bold;">4.Depilare cu Ceară:</p> Beneficiați de o experiență de depilare netedă și eficientă cu serviciile noastre de depilare cu ceară. Echipa noastră de terapeuți vă va ajuta să vă simțiți confortabil în timpul procedurii, oferindu-vă o piele perfectă pentru mai mult timp.
 
 </p><p>Ne mândrim cu atenția noastră la detalii, cu atmosfera relaxantă și cu abordarea personalizată în toate serviciile pe care le oferim. La Salonul de Frumusețe Rika Esthetic, vă invităm să vă răsfățați și să vă îngrijiți atât corpul, cât și mintea, într-un mediu primitor și profesionist. Vă așteptăm cu brațele deschise pentru a vă ajuta să străluciți în frumusețea dumneavoastră autentică!</p>
 </div>

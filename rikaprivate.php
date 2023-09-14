@@ -1,11 +1,46 @@
 <?php
 $c =mysqli_connect('localhost','root','','rika');
 session_start();
-if (!isset($_SESSION['logged_in_user_id'])) {
-    header("Location: ./rikaprivate.php");
-}else {
+if (!isset($_SESSION['logged_in_user'])) {
+    header("Location: login.php");
+ 
+
+// Afișează numele de utilizator
+$username = $_SESSION['logged_in_user'];}
 $sql="SELECT * FROM programari";
+$result = mysqli_query($c, $sql);
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $button_name = "done_" . $row["id_prog"];
+    if (isset($_POST[$button_name])) {
+
+        $id_prog = $_POST["id"];
+        $observatii = $_POST["obs"];
+        $idd =crc32(uniqid()); 
+    $sql_insert_istoric = "INSERT INTO istoric_clienti (id_client,nume, prenume, telefon,procedura, data, observatii)
+                          SELECT '$idd',nume, prenume, telefon, serviciu, data, '$observatii'
+                          FROM programari
+                          WHERE id_prog = '$id_prog'";
+
+    
+    if ($c->query($sql_insert_istoric) === TRUE) {
+        echo "Datele au fost inserate cu succes în tabelul istoric_clienti.";
+
+        
+        $sql_delete = "DELETE FROM programari WHERE id_prog = '$id_prog'";
+        if ($c->query($sql_delete) === TRUE) {
+            echo "Înregistrarea a fost ștearsă din tabelul programari.";
+        } else {
+            echo "Eroare la ștergere din tabelul programari: " . $c->error;
+        }
+    } else {
+        echo "Eroare la inserarea datelor în tabelul de istoric: " . $c->error;
+    }
+
 }
+}}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +78,7 @@ $sql="SELECT * FROM programari";
     width: 100%;
 }
 h3{
-    margin:30px 60px 20px 60px;
+    margin:30px 50px 20px 50px;
 }
 input{
 
@@ -75,22 +110,23 @@ button{
     <div   class="links">
             <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./rikaprivate.php">Programari</a>
             <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./search_info.php">Informatii Clienti</a>
-            <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./activate.php">Activeaza Programari</a>  
+            <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./activate.php">Activeaza Programari</a>
+            <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 400px; " href="./logout.php">Ieșire</a>   
         </div>
         
     </nav>
 </header>  
 <main>
     <div class="antet" style="display:flex;flex-direction:row;background-color:#E7D8C9;opacity:60%;height:80px;">
-        <h3 style="margin-left:80px;">Nume</h3>
+        <h3 style="margin-left:70px;">Nume</h3>
         <h3>Prenume</h3>
         <h3>Telefon</h3>
-        <h3>Serviciu</h3>
-        <h3 style="margin-left:80px;">Data</h3>
-        <h3 style="margin-left:100px;">Ora</h3>
+        <h3 style="margin-left:130px;">Serviciu</h3>
+        <h3 style="margin-left:150px;">Data</h3>
+        <h3 style="margin-left:60px;">Ora</h3>
         <h3 style="margin-left:100px;">Observatii</h3>
     </div>
-    <form action="./info_client.php" method="post">
+    <form action="./rikaprivate.php" method="post">
     <div style="display:flex;flex-direction:column;">
         <?php
         $result = mysqli_query($c, $sql);
@@ -98,22 +134,20 @@ button{
             while ($row = mysqli_fetch_assoc($result)) {
         ?>
                 <div style="display:flex;flex-direction:row;height:100px;margin:0 0 20px 0;">
-                    <h4 style="margin-top:90px;flex: 1; text-align: center;"><?php echo $row['nume']; ?></h4>
+                    <h4 style="margin-top:90px;flex: 1.5; text-align: center;"><?php echo $row['nume']; ?></h4>
                     <h4 style="margin-top:90px;flex: 1; text-align: center;"><?php echo $row['prenume']; ?></h4>
-                    <h4 style="margin-top:90px;flex: 1; text-align: center;"><?php echo $row['telefon']; ?></h4>
-                    <h4 style="margin-top:90px;flex: 1; text-align: center;"><?php echo $row['serviciu']; ?></h4>
-                    <h4 style="margin-top:90px;flex: 1; text-align: center;"><?php echo $row['data']; ?></h4>
-                    <h4 style="margin-top:90px;flex: 1; text-align: center;"><?php echo $row['ora']; ?></h4>
+                    <h4 style="margin-top:90px;flex: 2; text-align: center;"><?php echo $row['telefon']; ?></h4>
+                    <h4 style="margin-top:90px;flex: 2; text-align: center;"><?php echo $row['serviciu']; ?></h4>
+                    <h4 style="word-spacing: 80px;margin-top:90px;flex: 3; text-align: center;"><?php echo $row['data']; ?></h4>
                     <input id="obs" name="obs" type="text">
-                    <input type='hidden' name='id' value='" . $row["id_prog"] . "'>
-                    <button type="submit" name="done" value="done">✔</button></form>
+                    <input type='hidden' name='id' value="<?php echo $row["id_prog"]; ?>">
+                    <button type="submit" name="done_<?php echo $row["id_prog"]; ?>" value="done">✔</button>
                 </div>
         <?php
           
-
+}
         }
-        }
-        ?>
+     ?></form>
     </div>
 </main>
 

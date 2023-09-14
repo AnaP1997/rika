@@ -185,7 +185,7 @@
     <div>
     <div class="curs"><h1>Курсы</h1></div>
     <div class="cursuri">
-      <p><img style="border-radius:0 100px 100px 0;width:800px;height:300px;margin-left:0;" src="./img/ceara.jpg" alt="">Вощение</p>
+      <p><img style="border-radius:0 100px 100px 0;width:800px;height:300px;margin-left:0;" src="./img/ceara.jpg" alt="">Депиляция воском</p>
       <p style="margin-top:100px">Сахарная эпиляция<img style="border-radius:0 0 0 70px;width:779px;height:250px;margin-left:-60px;" src="./img/zahar.jpg" alt=""></p>
     </div>
     </div>
