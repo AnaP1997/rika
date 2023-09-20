@@ -1,5 +1,18 @@
 <?php
- 
+  $c=mysqli_connect('localhost','root','','rika');
+    session_start();
+    if (!isset($_SESSION['logged_in_user_id'])) {
+        
+    } else {
+        $id = $_SESSION['logged_in_user_id'];
+
+        $sql = "SELECT * FROM users WHERE id = '$id'";
+
+        $result = mysqli_query($c,$sql);
+        if ($row = mysqli_fetch_assoc($result)) {
+
+        } 
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -143,6 +156,7 @@
   
 }
 #myDIV {
+  opacity:60%;
   width: 100%;
   padding: 50px 0;
   text-align: center;
@@ -218,7 +232,7 @@
     <header>
     <div style="display: flex; flex-direction: row; padding:5px;font-family:'Audiowide', sans-serif;margin:0;"
  class="logo">
-        <img style="margin-top:-5px;margin-right:150px;height:90px; width:90px;border:1px solid #7a7a7a;border-radius:50px;  animation-name: rotation;
+        <img style="margin-top:-5px;margin-right:60px;height:90px; width:90px;border:1px solid #7a7a7a;border-radius:50px;  animation-name: rotation;
   animation-iteration-count: 1;
   animation-timing-function: linear;
   animation-duration: 2.5s;" src="./components/riika.jpg" alt="">
@@ -226,12 +240,25 @@
     <?php
     include './components/nav.php"';
     include './components/languageru.php"';
-     ?> </header>
+     ?> 
+     <?php
+   
+    if  (isset($_SESSION['logged_in_user_id'])) {
+      echo '<a style="text-decoration: none;color:black;margin:38px 0 0 60px;font-size:18px;" href="./myprog.php">Programările mele</a>';
+      echo '<h1 style="margin:38px 0 0 40px;color:#d4a373;font-size:20px;">' . $row['nume'] . '</h1>';
+        
+        echo '<a style="text-decoration: none;color:black;margin:38px 0 0 70px;font-size:18px;" href="./logout.php">Ieșire</a>';
+    } else {
+        
+        echo '<a style="text-decoration: none;color:black;margin-left:100px;margin-top:40px;font-size:18px;" href="./login.php">Login</a>';
+    }
+    ?>
+    </header>
     
      <main>
       <div class="main-idx">
-            <h1>Locul unde se imbina eleganta
-                  si confortul</h1>
+            <h1>Locul unde se îmbină eleganța
+                  și confortul</h1>
         </div>          
 
      <div class="services">
@@ -253,12 +280,12 @@ Cel mai performant laser la ora actuala la nivel internațional cit și in Moldo
     <div class="i-fr"><h1>Întrebări frecvente</h1></div>
     <div class="intr">
 <div class="qa">
-<p><img class="int" src="./img/i1.jpg" alt="">Cum sa alegi cel mai bun tratament anicelulitic?</p>
+<p><img class="int" src="./img/i1.jpg" alt="">Cum să alegi cel mai bun tratament anicelulitic?</p>
   <div class="overlay">
     <div class="rs"><p>Cel mai indicat este sa mergi la o evaluare corporala pentru a vedea de ce anume ai nevoie si de a primi un plan de tratament personalizat.In clinica Rika Esthetic consuntatiile sunt gratuite si complet neangajante.</p></div></div>    
 </div>
 <div class="qa">
-<p><img class="int" src="./img/i2.jpg" alt="">Se poate face epilare definitiva in perioada verii?</p>
+<p><img class="int" src="./img/i2.jpg" alt="">Se poate face epilare definitivă în perioada verii?</p>
 <div class="overlay">
   <div class="rs">
     <p>Da,se poate,atata timp cat se respecta recomandarile primite de la specialistii nostri.Aceasta vizeaza perioada de dinaintea terapiei precum si recomandari care trebuie respectate dupa efectuarea terapiei.</p>
@@ -269,7 +296,7 @@ Cel mai performant laser la ora actuala la nivel internațional cit și in Moldo
 
 </div>
       <div class="qa">
-      <p><img class="int3" src="./img/i3.jpg" alt="">Cate sedinte de tratament sunt necesare?</p>
+      <p><img class="int3" src="./img/i3.jpg" alt="">Câte ședințe de tratament sunt necesare?</p>
       <div class="overlay">
         <div class="rs">
           <p>Varianta scurta de raspuns:6-12 sesiuni in functie de zona.Numarul de sedinte se stabileste pentru fiecare persoana in parte,de catre specialistul terapeut,care face o consultatie atenta asupra pielii. </p>
@@ -283,11 +310,26 @@ Cel mai performant laser la ora actuala la nivel internațional cit și in Moldo
     <div>
     <div class="curs"><h1>Cursuri</h1></div>
     <div class="cursuri">
-      <p><img style="border-radius:0 100px 100px 0;width:800px;height:300px;margin-left:0;" src="./img/ceara.jpg" alt="">Epilare  cu ceara</p>
-      <p style="margin-top:100px">Epilare  cu zahar<img style="border-radius:0 0 0 70px;width:779px;height:250px;margin-left:-60px;" src="./img/zahar.jpg" alt=""></p>
+      <p><img style="border-radius:0 100px 100px 0;width:800px;height:300px;margin-left:0;" src="./img/ceara.jpg" alt="">Epilare  cu ceară</p>
+      <p style="margin-top:100px">Epilare  cu zahăr<img style="border-radius:0 0 0 70px;width:779px;height:250px;margin-left:-60px;" src="./img/zahar.jpg" alt=""></p>
     </div>
     </div>
-    <button class="rezerva"><a style="text-decoration: none;color:white;" href="./appointment.php">Rezerva o Programare</a></button>
+    <?php
+   
+   if  (isset($_SESSION['logged_in_user_id'])) {
+     echo '<button class="rezerva">
+     <a style="text-decoration: none; color: white;" href="appointment.php">
+         Rezervă o Programare
+     </a>
+ </button>'; } else {
+       
+  echo '<button class="rezerva">
+  <a style="text-decoration: none; color: white;" href="login.php">
+      Rezervă o Programare
+  </a>
+</button>';}
+   ?>
+   
 </main> 
   <?php
   include './components/footer.php"';

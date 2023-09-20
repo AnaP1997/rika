@@ -123,12 +123,12 @@ img {vertical-align: middle;}
 <div class="slideshow-container">
 
 <div class="mySlides fade">
-  <img src="./img/laser.jpg" style="width:900px;height:500px;">
+  <img src="./img/i2.jpg" style="width:900px;height:500px;">
   <div class="text">Epilare definitivă cu laser</div>
 </div>
 
 <div class="mySlides fade">
-  <img src="./img/i2.jpg" style="width:900px;height:500px;">
+  <img src="./img/laser.jpg" style="width:900px;height:500px;">
   <div class="text">Eficient</div>
 </div>
 

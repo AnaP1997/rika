@@ -3,7 +3,7 @@ $c=mysqli_connect('localhost','root','','rika');
 session_start();
 
 if (isset($_SESSION['logged_in_user'])) {
-    header("Location: ./index.php");
+    header("Location: ./rikaprivate.php");
     exit;
 }
 
@@ -11,14 +11,14 @@ if (isset($_POST['login'])) {
     $username = FILTER_INPUT(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
     $password = FILTER_INPUT(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
 
-    $sql = "SELECT * FROM users WHERE nume = '$username'";
+    $sql = "SELECT * FROM providers WHERE nume = '$username'";
 
         $result = mysqli_query($c,$sql);
         if ($row = mysqli_fetch_assoc($result)) {
             if (password_verify($password, $row['password'])) {
                 $successMessage = "You're logged in";
                 $_SESSION['logged_in_user_id'] = $row['id'];
-                header("Location: ./index.php");
+                header("Location: ./rikaprivate.php");
             } else {
         $error = "Nume de utilizator sau parolă incorectă". mysqli_error($c);
     }}
@@ -83,7 +83,7 @@ if (isset($_POST['login'])) {
 </div>
    
 
-    <form method="POST" action="login.php">
+    <form method="POST" action="login1.php">
     
         <label for="username">Nume de utilizator:</label>
         <input type="text" id="username" name="username" required><br>
@@ -95,8 +95,6 @@ if (isset($_POST['login'])) {
         <?php if (isset($error)) { ?>
         <p style="color: red;"><?php echo $error; ?></p>
     <?php } ?>
-        <h3>Loghează-te pentru a gestiona programările tale!</h3>
-        <p>Nu ai cont la noi?<a style="text-decoration: none;color:black;margin-left:10px;font-size:18px;" href="./register.php">Înregistrează-te!</a></p>
     </form>
 </body>
 </html>

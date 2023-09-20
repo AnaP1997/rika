@@ -9,13 +9,14 @@
     }*/
     if (isset($_POST["program"])) {
         $data = FILTER_INPUT(INPUT_POST, 'data', FILTER_SANITIZE_SPECIAL_CHARS);
-        $ora = FILTER_INPUT(INPUT_POST, 'ora', FILTER_SANITIZE_SPECIAL_CHARS);
+        $o = FILTER_INPUT(INPUT_POST, 'oraa', FILTER_SANITIZE_SPECIAL_CHARS);
+        $min = FILTER_INPUT(INPUT_POST, 'min', FILTER_SANITIZE_SPECIAL_CHARS);
 
-
-            $id = bin2hex(random_bytes(16));
+    $ora_completa = $o . ":" . $min;
+            $id = bin2hex(random_bytes(9));
         
             $sql = "INSERT INTO programari_active(id_prog_activ,data,ora)
-                    VALUES('$id','$data','$ora')";
+                    VALUES('$id','$data','$ora_completa')";
 
             if (mysqli_query($c,$sql)) {
                 $successMessage = "Programare Reusita ";
@@ -57,7 +58,7 @@
             display: block;
             margin-bottom: 10px;
         }
-        input[type="date"], input[type="time"] {
+        input[type="date"] {
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
@@ -74,6 +75,11 @@
         }
         button:hover {
             background-color: #0056b3;
+        }
+        select{
+            height:40px;
+            width:100px;
+            margin:10px;
         }
     </style>
 </head>
@@ -107,10 +113,32 @@
             <input type="date" id="data" name="data" required>
 
             <label for="ora">Ora:</label>
-            <input type="time" id="ora" name="ora" required>
+            <div style="display:flex;flex-direction:row;margin:10px;">
+            <select id="ora" name="oraa" required>
+  <option value="">Alege oră</option>
+  <?php
+  for ($i = 8; $i <= 20; $i++) {
+    $ora = sprintf('%02d', $i); // Formatează ora pentru a fi afișată ca două cifre
+    echo '<option value="' . $ora . '">' . $ora . '</option>';
+  }
+  ?>
+</select>
+<select id="minute" name="min" required>
+  <option value="">Alege minute</option>
+  <?php
+  for ($i = 0; $i <= 59; $i++) {
+    $minute = sprintf('%02d', $i); // Formatează minutele pentru a fi afișate ca două cifre
+    echo '<option value="' . $minute . '">' . $minute . '</option>';
+  }
+  ?>
+</select>
+
+            </div>
+        
+
 
             <button type="submit" name="program" value="program">Creeaza Programare</button>
-            <p style="color: white; margin-left:40px;"><?php if(isset($successMessage)) echo $successMessage; ?></p>
+            <p style="color:green; margin-left:40px;"><?php if(isset($successMessage)) echo $successMessage; ?></p>
         <p style="color: red"><?php if(isset($errorMessage)) echo $errorMessage; ?></p>
     
         </form>

@@ -1,7 +1,6 @@
 <?php
      $c=mysqli_connect('localhost','root','','rika');
     session_start();
-    if(!$c) die();
     /*if (!$c) {
         die("Conexiunea la baza de date a eșuat: " . mysqli_connect_error());
     } else {
@@ -20,31 +19,30 @@ if ($result->num_rows > 0) {
 }
 
     if (isset($_POST["program"])) {
-        $nume = FILTER_INPUT(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);
-        $prenume = FILTER_INPUT(INPUT_POST, 'surname', FILTER_SANITIZE_SPECIAL_CHARS);
+        $id = $_SESSION['logged_in_user_id'];
+
+        $sql = "SELECT * FROM users WHERE id = '$id'";
+
+        $result = mysqli_query($c,$sql);
+        if ($row = mysqli_fetch_assoc($result)) {
+        $nume = $row['nume'];
         $telefon = FILTER_INPUT(INPUT_POST, 'phone', FILTER_SANITIZE_NUMBER_INT);
         $procedura = FILTER_INPUT(INPUT_POST, 'serviciu', FILTER_SANITIZE_SPECIAL_CHARS);
         $data = FILTER_INPUT(INPUT_POST, 'data', FILTER_SANITIZE_SPECIAL_CHARS);
         
-        if (strlen($nume) < 2) {
-            $nameError = "Nume prea scurt";
-        }
-
-        if (strlen($prenume) < 2) {
-            $surnameError = "Prenume prea scurt";
-        }
+        
         if (strlen($telefon) < 8) {
             $phoneError = "Telefon prea scurt";
         }
 
 
-        if (!isset($nameError) && !isset($surnameError) && !isset($phoneError)) {
+        if (!isset($phoneError)) {
           $id=crc32(uniqid());  
           $data_si_ora_array = explode(" ", $data);
           $d= $data_si_ora_array[0];
           $ora=$data_si_ora_array[1];
-            $sql = "INSERT INTO programari(id_prog,nume,prenume,telefon,serviciu,data)
-                    VALUES('$id','$nume','$prenume', '$telefon','$procedura','$data')";
+            $sql = "INSERT INTO programari(id_prog,nume,telefon,serviciu,data)
+                    VALUES('$id','$nume', '$telefon','$procedura','$data')";
 
                    
 
@@ -62,7 +60,7 @@ if ($result->num_rows > 0) {
         $errorMessage = "Ceva nu a mers, încercați din nou";
         echo mysqli_error($c);
     }
-}}
+}}}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -128,15 +126,10 @@ if ($result->num_rows > 0) {
         <h1>Rika Esthetic</h1>
 
         <form action="./appointment.php" method="post" style="padding:30px;margin:0 0 20px 0;">
-
-        <label for="name">Numele Dumneavoastră:</label>
-        <input id="name" name="name" type="text">
-
-        <label for="name">Prenumele Dumneavoastră:</label>
-        <input id="surname" name="surname" type="text">
+         <h3>Rezervă o programare:</h3>
 
         <label for="phone">Numarul de Telefon:</label>
-        <input id="phone" name="phone" type="text">
+        <input id="phone" name="phone" type="text"placeholder="68172354">
 
             <label for="serviciu">Selectați un serviciu:</label>
             <select id="serviciu" name="serviciu">
@@ -157,7 +150,7 @@ if ($result->num_rows > 0) {
             </select>
 
             <button type="submit" name="program" value="program">Programati</button>
-            <p style="color: white; margin-left:40px;"><?php if(isset($successMessage)) echo $successMessage; ?></p>
+            <p style="color:#5e503f; margin-left:40px;"><?php if(isset($successMessage)) echo $successMessage; ?></p>
         <p style="color: red"><?php if(isset($errorMessage)) echo $errorMessage; ?></p>
     
         </form>

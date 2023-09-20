@@ -1,12 +1,12 @@
 <?php
 $c =mysqli_connect('localhost','root','','rika');
 session_start();
-if (!isset($_SESSION['logged_in_user'])) {
-    header("Location: login.php");
+// if (!isset($_SESSION['logged_in_user'])) {
+//     header("Location: login1.php");
  
 
 // Afișează numele de utilizator
-$username = $_SESSION['logged_in_user'];}
+// $username = $_SESSION['logged_in_user'];}
 $sql="SELECT * FROM programari";
 $result = mysqli_query($c, $sql);
     if (mysqli_num_rows($result) > 0) {
@@ -108,9 +108,9 @@ button{
     
 
     <div   class="links">
-            <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./rikaprivate.php">Programari</a>
-            <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./search_info.php">Informatii Clienti</a>
-            <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./activate.php">Activeaza Programari</a>
+            <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./rikaprivate.php">Programări</a>
+            <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./search_info.php">Informații Clienți</a>
+            <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./activate.php">Activează Programări</a>
             <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 400px; " href="./logout.php">Ieșire</a>   
         </div>
         
@@ -124,7 +124,7 @@ button{
         <h3 style="margin-left:130px;">Serviciu</h3>
         <h3 style="margin-left:150px;">Data</h3>
         <h3 style="margin-left:60px;">Ora</h3>
-        <h3 style="margin-left:100px;">Observatii</h3>
+        <h3 style="margin-left:100px;">Observații</h3>
     </div>
     <form action="./rikaprivate.php" method="post">
     <div style="display:flex;flex-direction:column;">
