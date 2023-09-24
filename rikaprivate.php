@@ -1,12 +1,10 @@
 <?php
 $c =mysqli_connect('localhost','root','','rika');
 session_start();
-// if (!isset($_SESSION['logged_in_user'])) {
-//     header("Location: login1.php");
- 
-
-// Afișează numele de utilizator
-// $username = $_SESSION['logged_in_user'];}
+if (!isset($_SESSION['logged_in_user'])) {
+    header("Location: ./login1.php");
+    exit(); // Asigură-te că ieși din script pentru a opri procesarea ulterioară
+}
 $sql="SELECT * FROM programari";
 $result = mysqli_query($c, $sql);
     if (mysqli_num_rows($result) > 0) {
@@ -17,8 +15,8 @@ $result = mysqli_query($c, $sql);
         $id_prog = $_POST["id"];
         $observatii = $_POST["obs"];
         $idd =crc32(uniqid()); 
-    $sql_insert_istoric = "INSERT INTO istoric_clienti (id_client,nume, prenume, telefon,procedura, data, observatii)
-                          SELECT '$idd',nume, prenume, telefon, serviciu, data, '$observatii'
+    $sql_insert_istoric = "INSERT INTO istoric_clienti (id_client,nume,telefon,procedura, data, observatii)
+                          SELECT '$idd',nume,telefon, serviciu, data, '$observatii'
                           FROM programari
                           WHERE id_prog = '$id_prog'";
 
@@ -111,7 +109,7 @@ button{
             <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./rikaprivate.php">Programări</a>
             <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./search_info.php">Informații Clienți</a>
             <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./activate.php">Activează Programări</a>
-            <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 400px; " href="./logout.php">Ieșire</a>   
+            <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 400px; " href="./logout1.php">Ieșire</a>   
         </div>
         
     </nav>
@@ -119,10 +117,10 @@ button{
 <main>
     <div class="antet" style="display:flex;flex-direction:row;background-color:#E7D8C9;opacity:60%;height:80px;">
         <h3 style="margin-left:70px;">Nume</h3>
-        <h3>Prenume</h3>
-        <h3>Telefon</h3>
+        <h3 style="margin-left:120px;">Telefon</h3>
         <h3 style="margin-left:130px;">Serviciu</h3>
-        <h3 style="margin-left:150px;">Data</h3>
+        <h3 style="margin-left:80px;">Specialist</h3>
+        <h3 style="margin-left:100px;">Data</h3>
         <h3 style="margin-left:60px;">Ora</h3>
         <h3 style="margin-left:100px;">Observații</h3>
     </div>
@@ -135,7 +133,6 @@ button{
         ?>
                 <div style="display:flex;flex-direction:row;height:100px;margin:0 0 20px 0;">
                     <h4 style="margin-top:90px;flex: 1.5; text-align: center;"><?php echo $row['nume']; ?></h4>
-                    <h4 style="margin-top:90px;flex: 1; text-align: center;"><?php echo $row['prenume']; ?></h4>
                     <h4 style="margin-top:90px;flex: 2; text-align: center;"><?php echo $row['telefon']; ?></h4>
                     <h4 style="margin-top:90px;flex: 2; text-align: center;"><?php echo $row['serviciu']; ?></h4>
                     <h4 style="word-spacing: 80px;margin-top:90px;flex: 3; text-align: center;"><?php echo $row['data']; ?></h4>

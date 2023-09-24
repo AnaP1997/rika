@@ -112,7 +112,6 @@ form button{
         ?>
                 <div style="display:flex;flex-direction:row;height:100px;margin:0 0 20px 0;">
                     <h4 style="margin-top:90px;flex: 1; text-align: center;"><?php echo $row['nume']; ?></h4>
-                    <h4 style="margin-top:90px;flex: 1; text-align: center;"><?php echo $row['prenume']; ?></h4>
                     <h4 style="margin-top:90px;flex: 1; text-align: center;"><?php echo $row['procedura']; ?></h4>
                     <h4 style="margin-top:90px;flex: 1; text-align: center;"><?php echo $row['data']; ?></h4>
                     <h4 style="margin-top:90px;flex: 1; text-align: center;"><?php echo $row['observatii']; ?></h4>

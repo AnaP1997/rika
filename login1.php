@@ -4,7 +4,6 @@ session_start();
 
 if (isset($_SESSION['logged_in_user'])) {
     header("Location: ./rikaprivate.php");
-    exit;
 }
 
 if (isset($_POST['login'])) {
@@ -95,6 +94,7 @@ if (isset($_POST['login'])) {
         <?php if (isset($error)) { ?>
         <p style="color: red;"><?php echo $error; ?></p>
     <?php } ?>
+        
     </form>
 </body>
 </html>
