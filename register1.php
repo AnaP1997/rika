@@ -1,34 +1,35 @@
 <?php
-     $c=mysqli_connect('localhost','root','','rika');
+     $con=mysqli_connect('localhost','root','','rikaprivate');
     session_start();
 
 
     if (isset($_POST["register"])) {
         $login = FILTER_INPUT(INPUT_POST, 'login', FILTER_SANITIZE_SPECIAL_CHARS);
+        $function = FILTER_INPUT(INPUT_POST, 'function', FILTER_SANITIZE_SPECIAL_CHARS);
         $password = FILTER_INPUT(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
         $password2 = FILTER_INPUT(INPUT_POST, 'password2', FILTER_SANITIZE_SPECIAL_CHARS);
         
         if (strlen($login) < 2) {
-            $loginError = "Login is too short";
+            $loginError = "Login prea scurt";
         }
 
         if (strlen($password) < 4) {
-            $passwordError = "Password is too short";
+            $passwordError = "Password prea scurt";
         }
 
         if ($password !== $password2) {
-            $confirmError = "Passwords do not match";
+            $confirmError = "Parolele nu corespund";
         }
 
         if (!isset($loginError) && !isset($passwordError) && !isset($confirmError)) {
-            $id = crc32(uniqid());
+            $id = bin2hex(random_bytes(16));
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            $sql = "INSERT INTO providers(id, nume,password)
-                    VALUES('$id', '$login', '$hashedPassword')";
+            $sql = "INSERT INTO specialisti(id, nume,password,functia)
+                    VALUES('$id', '$login', '$hashedPassword','$function')";
 
-            if (mysqli_query($c,$sql)) {
-                $successMessage = "User created ";
+            if (mysqli_query($con,$sql)) {
+                $successMessage = "User created <a style='text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; ' href='./rikaprivate.php'>Acasa</a> ";
             } else {
                 $errorMessage = "Something wrong";
             }
@@ -101,6 +102,8 @@
             <span>
                 <?php if(isset($loginError)) echo $loginError; ?>
             </span>
+            <br>
+            <input type="text" name="function" placeholder="Functia" required>
             <br>
             <input type="password" name="password" placeholder="Password" required>
             <span>

@@ -1,6 +1,11 @@
 <?php
+ $c =mysqli_connect('localhost','root','','rika');
+ session_start();
+
+ $sql = "SELECT * FROM noutati";
  
-?>
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,18 +37,22 @@
     transform: rotate3d(0, 1, 0, 360deg);
   }
 }
-.news{
-    display:flex;
-    flex-direction:row;
-    margin:0 400px 200px 200px;
+.new{
+  height: 90vh;
+  background-size: cover;
+  background-position: 75% 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.news img{
-    height:300px;
-    width:400px;
-}
-.news p{
-    margin:80px 0 0 10px ;
-    font-size:18px;
+.new p{
+  font-family:Arial;
+  color:#fefae0;
+  animation-name:text-anim;
+  animation-duration: 4s;
+  font-size:40px;
+
 }
   </style>
     <title>Rika Esthetic</title>
@@ -55,11 +64,29 @@
     include './components/nav.php"';
     include './components/languageru.php"';
      ?> </div>
-     <h3 style="text-align:center;">Epilarea definitiva este un tratament aparut inca din anii 1900</h3>
-<div class="news">
-    <img src="./img/new.jpg" alt="">
-<p>Desi pare un tratament nou aparut pe piata, epilarea definitiva a fost descoperita inca din anii 1900, de catre dermatologii care foloseau lumina laser pentru eliminarea alunitelor. Ulterior, acestia au dezvoltat laserul pentru eliminarea firelor de par nedorite si, in scurt timp au fost lansate multiple tehnologii de epilare definitiva, cele mai cunoscute fiind laserul dioda si IPL-ul (lumina intens pulsata).</p>
-</div>
+      <div style="display:flex;flex-direction:column;margin:0 0 130px 0;">
+        <?php
+        $result = mysqli_query($c, $sql);
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+        ?>
+                <div style="display:flex;flex-direction:column;width:900px;height:400px;margin:0px 0 180px 300px;">
+                    <h2 style="margin-top:10px;flex: 1.5; text-align: center;"><?php echo $row['titlu']; ?></h2>
+                    <br>
+                    <div class="new" style="display:flex;flex-direction:row;margin-bottom:50px;background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
+    url('./img/<?php echo $row['imagine']; ?>');">
+                    
+                
+                    <p style="font-size:20px;margin-top:30px;text-align: center;"><?php echo $row['descriere']; ?></p>  
+                  </div>
+                    
+                </div>
+        <?php
+          
+}
+        }
+     ?>
+    </div>
   <?php
   include './components/footer.php"';
   ?> 

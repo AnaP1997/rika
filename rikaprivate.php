@@ -1,9 +1,30 @@
 <?php
 $c =mysqli_connect('localhost','root','','rika');
 session_start();
-if (!isset($_SESSION['logged_in_user'])) {
-    header("Location: ./login1.php");
-    exit(); // Asigură-te că ieși din script pentru a opri procesarea ulterioară
+$c2 = mysqli_connect('localhost', 'root', '', 'rikaprivate');
+
+// Verifică conexiunea la a doua bază de date
+if (!$c2) {
+    die("Eroare la conectarea la a doua bază de date: " . mysqli_connect_error());
+}
+$sql1 = "SELECT * FROM specialisti";
+$res = $c2->query($sql1);
+
+$name = array();
+$specialisti = array();
+
+
+if ($res->num_rows > 0) {
+    while ($row = $res->fetch_assoc()) {
+        $name[] = $row["nume"];
+        $specialisti[] = $row;}}
+        function esteAdministrator($username, $specialisti) {
+    foreach ($specialisti as $row) {
+        if ($row['nume'] === $username && $row['functia'] === 'Administrator') {
+            return true;
+        }
+    }
+    return false;
 }
 $sql="SELECT * FROM programari";
 $result = mysqli_query($c, $sql);
@@ -13,10 +34,11 @@ $result = mysqli_query($c, $sql);
     if (isset($_POST[$button_name])) {
 
         $id_prog = $_POST["id"];
+        $specialist = $_POST["specialist"];
         $observatii = $_POST["obs"];
         $idd =crc32(uniqid()); 
-    $sql_insert_istoric = "INSERT INTO istoric_clienti (id_client,nume,telefon,procedura, data, observatii)
-                          SELECT '$idd',nume,telefon, serviciu, data, '$observatii'
+    $sql_insert_istoric = "INSERT INTO istoric_clienti (id_client,nume,telefon,procedura, data, observatii,specialist)
+                          SELECT '$idd',nume,telefon, serviciu, data, '$observatii','$specialist'
                           FROM programari
                           WHERE id_prog = '$id_prog'";
 
@@ -37,7 +59,7 @@ $result = mysqli_query($c, $sql);
 
 }
 }}
-
+mysqli_close($c2);
 
 ?>
 <!DOCTYPE html>
@@ -89,7 +111,11 @@ button{
     height:40px;
     width:40px;
 }
-
+select{
+    margin-top:90px;
+    width:50px;
+    height:20px;
+}
   </style>
     <title>Rika Esthetic</title>
 </head>
@@ -108,9 +134,23 @@ button{
     <div   class="links">
             <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./rikaprivate.php">Programări</a>
             <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./search_info.php">Informații Clienți</a>
-            <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./activate.php">Activează Programări</a>
-            <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 400px; " href="./logout1.php">Ieșire</a>   
-        </div>
+            <?php
+   
+   if (isset($_SESSION['logged_in_user_id'])) {
+    
+    $logged_in_user_id = $_SESSION['logged_in_user_id'];
+
+    
+    if (esteAdministrator($logged_in_user_id, $specialisti)) {
+       
+        echo '<a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./activate.php">Activează Programări</a>';
+        echo '<a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./addnews.php">Adaugă noutăți</a>';
+        echo '<a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./register1.php">Adaugă specialist</a>';
+    }
+
+ 
+    echo '<a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 300px; " href="./logout1.php">Ieșire</a>';
+}?>
         
     </nav>
 </header>  
@@ -135,6 +175,14 @@ button{
                     <h4 style="margin-top:90px;flex: 1.5; text-align: center;"><?php echo $row['nume']; ?></h4>
                     <h4 style="margin-top:90px;flex: 2; text-align: center;"><?php echo $row['telefon']; ?></h4>
                     <h4 style="margin-top:90px;flex: 2; text-align: center;"><?php echo $row['serviciu']; ?></h4>
+                    <select name="specialist" id="specialist">
+            <?php
+        foreach ($name as $n) {
+            echo "<option value='" . $n . "'>" . $n . "</option>";
+        }
+        
+        ?>
+            </select>
                     <h4 style="word-spacing: 80px;margin-top:90px;flex: 3; text-align: center;"><?php echo $row['data']; ?></h4>
                     <input id="obs" name="obs" type="text">
                     <input type='hidden' name='id' value="<?php echo $row["id_prog"]; ?>">

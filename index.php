@@ -1,10 +1,10 @@
 <?php
   $c=mysqli_connect('localhost','root','','rika');
     session_start();
-    if (!isset($_SESSION['logged_in_user_id_1'])) {
+    if (!isset($_SESSION['logged_in_user_id'])) {
         
     } else {
-        $id = $_SESSION['logged_in_user_id_1'];
+        $id = $_SESSION['logged_in_user_id'];
 
         $sql = "SELECT * FROM users WHERE id = '$id'";
 
@@ -241,9 +241,9 @@
     include './components/nav.php"';
     include './components/languageru.php"';
      ?> 
-     <?php
+<?php
    
-    if  (isset($_SESSION['logged_in_user_id_1'])) {
+    if  (isset($_SESSION['logged_in_user_id'])) {
       echo '<a style="text-decoration: none;color:black;margin:38px 0 0 60px;font-size:18px;" href="./myprog.php">Programările mele</a>';
       echo '<h1 style="margin:38px 0 0 40px;color:#d4a373;font-size:20px;">' . $row['nume'] . '</h1>';
         
@@ -316,7 +316,7 @@ Cel mai performant laser la ora actuala la nivel internațional cit și in Moldo
     </div>
     <?php
    
-   if  (isset($_SESSION['logged_in_user_id_1'])) {
+   if  (isset($_SESSION['logged_in_user_id'])) {
      echo '<button class="rezerva">
      <a style="text-decoration: none; color: white;" href="appointment.php">
          Rezervă o Programare

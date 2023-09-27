@@ -84,7 +84,9 @@ form button{
     <div   class="links">
             <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./rikaprivate.php">Programari</a>
             <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./info.php">Informatii Clienti</a>
-            <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./activate.php">Activeaza Programari</a>  
+            <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./activate.php">Activeaza Programari</a>
+            <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./addnews.php">Adaugă noutăți</a>
+            <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 300px; " href="./logout1.php">Ieșire</a>   
         </div>
         
     </nav>

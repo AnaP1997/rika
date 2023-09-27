@@ -37,7 +37,7 @@ if ($result->num_rows > 0) {
 
 
         if (!isset($phoneError)) {
-          $id=crc32(uniqid());  
+          $id= bin2hex(random_bytes(9));  
           $data_si_ora_array = explode(" ", $data);
           $d= $data_si_ora_array[0];
           $ora=$data_si_ora_array[1];
@@ -120,7 +120,9 @@ if ($result->num_rows > 0) {
     include './components/logo.php"';
     include './components/nav.php"';
     include './components/languageru.php"';
-     ?> </div>
+     ?>
+     <a style="text-decoration: none;color:black;margin:38px 0 0 60px;font-size:18px;" href="./myprog.php">Programările mele</a>
+     </div>
      <main style="margin:10px;">
     <div class="container">
         <h1>Rika Esthetic</h1>

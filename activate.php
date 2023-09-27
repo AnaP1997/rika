@@ -13,7 +13,7 @@
         $min = FILTER_INPUT(INPUT_POST, 'min', FILTER_SANITIZE_SPECIAL_CHARS);
 
     $ora_completa = $o . ":" . $min;
-            $id = bin2hex(random_bytes(9));
+            $id = bin2hex(random_bytes(16));
         
             $sql = "INSERT INTO programari_active(id_prog_activ,data,ora)
                     VALUES('$id','$data','$ora_completa')";
@@ -98,7 +98,9 @@
     <div   class="links">
             <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./rikaprivate.php">Programari</a>
             <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./search_info.php">Informatii Clienti</a>
-            <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./activate.php">Activeaza Programari</a>  
+            <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./activate.php">Activeaza Programari</a>
+            <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./addnews.php">Adaugă noutăți</a>
+            <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 300px; " href="./logout1.php">Ieșire</a>   
         </div>
         
     </nav>

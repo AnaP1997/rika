@@ -17,7 +17,7 @@ if (isset($_POST['login'])) {
         if ($row = mysqli_fetch_assoc($result)) {
             if (password_verify($password, $row['password'])) {
                 $successMessage = "You're logged in";
-                $_SESSION['logged_in_user_id_1'] = $row['id'];
+                $_SESSION['logged_in_user_id'] = $row['id'];
                 header("Location: ./index.php");
             } else {
         $error = "Nume de utilizator sau parolă incorectă". mysqli_error($c);

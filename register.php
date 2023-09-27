@@ -22,16 +22,16 @@
         }
 
         if (!isset($loginError) && !isset($passwordError) && !isset($confirmError)) {
-            $id = uniqid();
+            $id = bin2hex(random_bytes(16));
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
             $sql = "INSERT INTO users(id, nume, email, password,telefon)
                     VALUES('$id', '$login','$email', '$hashedPassword','$telefon')";
 
             if (mysqli_query($c,$sql)) {
-                $successMessage = "User created ";
+                $successMessage = "User creat <a style='text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; ' href='./index.php'>Acasa</a> ";
             } else {
-                $errorMessage = "Something wrong";
+                $errorMessage = "Ceva nu a mers!";
             }
         }
     }
@@ -121,7 +121,7 @@
             <br>
             <button type="submit" name="register" value="register">Register</button>
         </form>
-        <p style="color: white; margin-left:40px;"><?php if(isset($successMessage)) echo $successMessage; ?>
+        <p style="color:black; margin-left:40px;"><?php if(isset($successMessage)) echo $successMessage; ?>
     </div>
     </form>
 

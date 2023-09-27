@@ -1,5 +1,5 @@
 <?php
-$c=mysqli_connect('localhost','root','','rika');
+$c=mysqli_connect('localhost','root','','rikaprivate');
 session_start();
 
 if (isset($_SESSION['logged_in_user'])) {
@@ -10,7 +10,7 @@ if (isset($_POST['login'])) {
     $username = FILTER_INPUT(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
     $password = FILTER_INPUT(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
 
-    $sql = "SELECT * FROM providers WHERE nume = '$username'";
+    $sql = "SELECT * FROM specialisti WHERE nume = '$username'";
 
         $result = mysqli_query($c,$sql);
         if ($row = mysqli_fetch_assoc($result)) {
