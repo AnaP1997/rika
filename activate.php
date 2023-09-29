@@ -113,7 +113,7 @@
         <form action="./activate.php" method="post" style="padding:30px;margin:0 0 20px 0;">
 
             <label for="data">Data:</label>
-            <input type="date" id="data" name="data" required>
+            <input type="date" format="DD-MM" id="data" name="data" required>
 
             <label for="ora">Ora:</label>
             <div style="display:flex;flex-direction:row;margin:10px;">
@@ -121,7 +121,7 @@
   <option value="">Alege oră</option>
   <?php
   for ($i = 8; $i <= 20; $i++) {
-    $ora = sprintf('%02d', $i); // Formatează ora pentru a fi afișată ca două cifre
+    $ora = sprintf('%02d', $i);
     echo '<option value="' . $ora . '">' . $ora . '</option>';
   }
   ?>
@@ -130,7 +130,7 @@
   <option value="">Alege minute</option>
   <?php
   for ($i = 0; $i <= 59; $i++) {
-    $minute = sprintf('%02d', $i); // Formatează minutele pentru a fi afișate ca două cifre
+    $minute = sprintf('%02d', $i);
     echo '<option value="' . $minute . '">' . $minute . '</option>';
   }
   ?>

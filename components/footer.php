@@ -6,7 +6,7 @@
         
 <a href="https://www.facebook.com/epilareculaserdiodaALMA"><img style="margin:8px 10px 8px 10px;height:60px; width:60px;border-radius:30px;" src="./components/facebook.png" alt=""></a>
 <a href="https://www.instagram.com/rika_esthetic/?igshid=MzRlODBiNWFlZA%3D%3D"><img style="margin:8px 10px 8px 10px;height:60px; width:60px;border-radius:30px;" src="./components/instagram.png" alt=""></a>   
-<a href="tel:+37369267015"><img style="margin:8px 10px 8px 10px;height:60px; width:60px;border-radius:30px;" src="./components/phone.png" alt=""></a>
+<a href="tel:+3736922222"><img style="margin:8px 10px 8px 10px;height:60px; width:60px;border-radius:30px;" src="./components/phone.png" alt=""></a>
 </div>
 </div>
     </footer>

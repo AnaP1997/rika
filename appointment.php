@@ -144,7 +144,12 @@ if ($result->num_rows > 0) {
             <select name="data" id="data">
             <?php
         foreach ($date_disponibile as $data) {
-            echo "<option value='" . $data . "'>" . $data . "</option>";
+            // Convertim $data într-un obiect DateTime pentru a putea formata data într-un format specific
+            $data_formatata = new DateTime($data);
+            // Formatare dată în formatul "luna-zi ora:minute"
+            $data_afisata = $data_formatata->format("M-d H:i");
+            // Afisăm opțiunea în formatul dorit
+            echo "<option value='" . $data . "'>" . $data_afisata . "</option>";
         }
         
         ?>
