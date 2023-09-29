@@ -35,7 +35,6 @@ session_start();
   }
 }
 .antet{
-    
     width: 100%;
 }
 h3{
@@ -82,12 +81,10 @@ form button{
     
 
     <div   class="links">
-    <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./rikaprivate.php">Programări</a>
-<a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./search_info.php">Informații Clienți</a>
-<a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./activate.php">Activează Programări</a>
-<a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./addnews.php">Adaugă noutăți</a>
-<a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./register1.php">Adaugă specialist</a>
-<a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 30px; " href="./logout1.php">Ieșire</a>    
+            <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./private.php">Programari</a>
+            <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 20px; " href="./info.php">Informatii Clienti</a>
+
+            <a style="text-decoration: none; color:#4A4E69;margin:0 20px 0 300px; " href="./logout1.php">Ieșire</a>   
         </div>
         
     </nav>

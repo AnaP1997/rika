@@ -83,21 +83,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Register</title>
+   <title>Specialist nou</title>
     
 </head>
 <body>
 <div style="margin-left:90px;display:flex;flex-direction:row;">
-<img style="margin:10px 0 0 10px;height:60px; width:60px;border:1px solid #7a7a7a;border-radius:50px;  animation-name: rotation;
+<a href="./rikaprivate.php"><img style="margin:10px 0 0 10px;height:60px; width:60px;border:1px solid #7a7a7a;border-radius:50px;  animation-name: rotation;
   animation-iteration-count: 1;
   animation-timing-function: linear;
-  animation-duration: 2.5s;" src="./components/riika.jpg" alt=""><h1>Rika Esthetic Register</h1>
+  animation-duration: 2.5s;" src="./components/riika.jpg" alt=""></a><h1>Rika Esthetic Register</h1>
 </div>
    
     <div class="register" style="
     width:500px; height:500px;">
         
         <form action="./register1.php" method="POST" style="padding:20px 0 0 140px;">
+    
         <input type="text" name="login" placeholder="Login" required>
             <span>
                 <?php if(isset($loginError)) echo $loginError; ?>

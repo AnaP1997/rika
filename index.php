@@ -239,7 +239,6 @@
    </div>
     <?php
     include './components/nav.php"';
-    include './components/languageru.php"';
      ?> 
 <?php
    
@@ -310,8 +309,8 @@ Cel mai performant laser la ora actuala la nivel internațional cit și in Moldo
     <div>
     <div class="curs"><h1>Cursuri</h1></div>
     <div class="cursuri">
-      <p><img style="border-radius:0 100px 100px 0;width:800px;height:300px;margin-left:0;" src="./img/ceara.jpg" alt="">Epilare  cu ceară</p>
-      <p style="margin-top:100px">Epilare  cu zahăr<img style="border-radius:0 0 0 70px;width:779px;height:250px;margin-left:-60px;" src="./img/zahar.jpg" alt=""></p>
+      <p><img style="border-radius:0 100px 100px 0;width:800px;height:300px;margin-left:0;" src="./img/ceara-b.png" alt="">Epilare  cu ceară</p>
+      <p style="margin-top:100px">Epilare  cu zahăr<img style="border-radius:0 0 0 70px;width:779px;height:250px;margin-left:-60px;" src="./img/zahar-b.png" alt=""></p>
     </div>
     </div>
     <?php

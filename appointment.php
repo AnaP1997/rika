@@ -37,7 +37,7 @@ if ($result->num_rows > 0) {
 
 
         if (!isset($phoneError)) {
-          $id= bin2hex(random_bytes(9));  
+          $id= bin2hex(random_bytes(10));  
           $data_si_ora_array = explode(" ", $data);
           $d= $data_si_ora_array[0];
           $ora=$data_si_ora_array[1];
@@ -119,7 +119,6 @@ if ($result->num_rows > 0) {
     <?php
     include './components/logo.php"';
     include './components/nav.php"';
-    include './components/languageru.php"';
      ?>
      <a style="text-decoration: none;color:black;margin:38px 0 0 60px;font-size:18px;" href="./myprog.php">Programările mele</a>
      </div>

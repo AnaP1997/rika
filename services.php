@@ -117,7 +117,6 @@ img {vertical-align: middle;}
     <?php
     include './components/logo.php"';
     include './components/nav.php"';
-    include './components/languageru.php"';
      ?> </div>
      <h2>Bine ați venit la Salonul de Frumusețe Rika Esthetic!</h2>
 <div class="slideshow-container">

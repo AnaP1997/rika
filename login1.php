@@ -17,7 +17,10 @@ if (isset($_POST['login'])) {
             if (password_verify($password, $row['password'])) {
                 $successMessage = "You're logged in";
                 $_SESSION['logged_in_user_id'] = $row['id'];
-                header("Location: ./rikaprivate.php");
+                if($row['functia']==='Administrator'){
+                header("Location: ./rikaprivate.php");}else{
+                    header("Location: ./private.php"); 
+                }
             } else {
         $error = "Nume de utilizator sau parolă incorectă". mysqli_error($c);
     }}

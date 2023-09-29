@@ -56,7 +56,6 @@
     <?php
     include './components/logo.php"';
     include './components/nav.php"';
-    include './components/languageru.php"';
      ?> </div>
      <br>
      <br>

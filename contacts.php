@@ -45,7 +45,7 @@
     <?php
     include './components/logo.php"';
     include './components/nav.php"';
-    include './components/languageru.php"';
+    
      ?> </div>
      <div class="contacts">
         <img style="width:200px;height:300px;" src="./img/locatie.jpg" alt="">

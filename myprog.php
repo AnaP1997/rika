@@ -91,7 +91,7 @@ button{
    </div>
     <?php
     include './components/nav.php"';
-    include './components/languageru.php"';
+    
      ?> 
      <?php
    

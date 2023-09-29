@@ -62,7 +62,7 @@
     <?php
     include './components/logo.php"';
     include './components/nav.php"';
-    include './components/languageru.php"';
+    
      ?> </div>
       <div style="display:flex;flex-direction:column;margin:0 0 130px 0;">
         <?php
